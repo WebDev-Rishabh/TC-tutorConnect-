@@ -1,0 +1,111 @@
+/* src/styles/Pricing.css */
+.pricingPage {
+    padding: 2rem;
+    background: #f9fafc;
+    min-height: 100vh;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .pricingTitle {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0b2447;
+  }
+  
+  .pricingSubtext {
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+  
+  .pricingStats {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .statCard {
+    background: #fff;
+    padding: 1.2rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1;
+  }
+  
+  .statCard h3 {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .statCard .amount {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1b73e8;
+  }
+  
+  .statCard span {
+    color: #777;
+    font-size: 0.9rem;
+  }
+  
+  .pricingInfoTitle {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #0b2447;
+  }
+  
+  .pricingForm {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 700px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .pricingForm label {
+    display: block;
+    font-weight: 600;
+    margin-top: 1rem;
+    color: #333;
+  }
+  
+  .pricingForm input,
+  .pricingForm select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+  }
+  
+  .checkboxRow {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.2rem;
+  }
+  
+  .checkboxRow label a {
+    color: #1b73e8;
+    text-decoration: none;
+  }
+  
+  .submitBtn {
+    width: 100%;
+    background: #1b73e8;
+    color: #fff;
+    border: none;
+    padding: 0.9rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .submitBtn:hover {
+    background: #0b5cd6;
+  }
+  

@@ -1,0 +1,174 @@
+/* src/styles/SignUp.css */
+.signUpPage {
+    text-align: center;
+    align-items: center;
+    padding: 40px;
+    gap: 20px;
+  }
+  
+  .signUpHeading {
+    
+    font-family: Poppins;
+    color: #1D4E89;
+font-weight: 600;
+font-style: SemiBold;
+font-size: 32px;
+
+line-height: 50px;
+letter-spacing: 2%;
+text-align: center;
+vertical-align: middle;
+
+    
+  }
+  
+  .cardContainer {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .signUpCard {
+    width: 320px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background: #fff;
+    transition: transform 0.3s ease;
+  }
+.signUpCard span{
+    padding: 10px;
+  }
+  .signUpCard h3 {
+    padding: 10px;
+    color: #1D4E89;
+    font-family: Poppins;
+font-weight: 600;
+font-style: SemiBold;
+font-size: 20px;
+
+line-height: 20px;
+letter-spacing: 2%;
+text-align: center;
+vertical-align: middle;
+
+  }
+
+  .signUpCard p{
+    color: #555555;
+    font-family: Poppins;
+font-weight: 400;
+font-style: Regular;
+font-size: 12px;
+
+line-height: 15px;
+letter-spacing: 1.5%;
+text-align: center;
+vertical-align: middle;
+
+  }
+  
+  .signUpCard:hover {
+    transform: translateY(-5px);
+  }
+  
+  .cardBtn {
+    width: 200px;
+    height: 44px;
+    margin-top: 15px;
+    /* padding: 10px 15px; */
+    border: none;
+    background-color: #1D4E89;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: Poppins;
+font-weight: 600;
+font-style: SemiBold;
+font-size: 16px;
+
+line-height: 15px;
+letter-spacing: 1.5%;
+text-align: center;
+vertical-align: middle;
+
+  }
+  
+  .cardBtn:hover {
+    background-color: #005bb5;
+  }
+  
+
+  /* ===== Signup Form Section ===== */
+.formContainer {
+  width: 380px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #E0E0E0;
+  border-radius: 12px;
+  padding: 30px 40px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  animation: fadeIn 0.4s ease;
+}
+
+.formHeading {
+  font-family: Poppins;
+  color: #1D4E89;
+  font-weight: 600;
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.formSubtext {
+  color: #555555;
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.signUpForm input,
+.signUpForm select {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  font-family: Poppins;
+  font-size: 14px;
+  outline: none;
+}
+
+.signUpForm input:focus,
+.signUpForm select:focus {
+  border-color: #1D4E89;
+  box-shadow: 0 0 3px rgba(29, 78, 137, 0.3);
+}
+
+.backBtn {
+  background: transparent;
+  border: none;
+  color: #1D4E89;
+  font-family: Poppins;
+  font-weight: 500;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.backBtn:hover {
+  color: #005bb5;
+}
+
+/* Small entry animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,1142 @@
+/* <<<----Get Started starts---->>> */
+.getStarted {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 20px;
+    flex-wrap: wrap;
+
+}
+
+.left {
+    max-width: 600px;
+    flex: 1;
+    margin-bottom: 20px;
+
+}
+
+.left h6 {
+    color: #2AA198;
+    font-family: Poppins;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+
+}
+
+.left h2 {
+    color: #1D4E89;
+    font-family: Poppins;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 36px;
+
+    line-height: 44px;
+    letter-spacing: 2%;
+    margin-bottom: 16px;
+
+}
+
+.left h3 {
+    color: #374151;
+    font-family: Poppins;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 18px;
+
+    line-height: 27px;
+    letter-spacing: 2%;
+    margin-bottom: 24px;
+
+}
+
+.btns {
+    /* max-width: 314px;
+    height: 44px; */
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.btns button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-family: Poppins, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.btns button:first-child {
+    background-color: #1D4E89;
+    color: #fff;
+}
+
+.btns button:first-child:hover {
+    background-color: #D5D5D5;
+    color: #1D4E89;
+    transform: translateY(-8px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+
+}
+
+.btns button:last-child {
+    background-color: #fff;
+    color: #2AA198;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btns button:last-child:hover {
+    background-color: #D5D5D5;
+    color: #1D4E89;
+
+    transform: translateY(-8px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.right {
+    width: 529px;
+    height: 313px;
+}
+
+/* <<<----Get Started ends---->>> */
+
+/* <<<----Why Choose starts---->>> */
+
+.whyChoose {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 20px;
+    flex-wrap: wrap;
+}
+
+.whyChoose h2 {
+    color: #1D4E89;
+    font-family: Poppins;
+    font-style: SemiBold;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 22px;
+    letter-spacing: 2%;
+}
+
+.whyChoose h3 {
+    color: #374151;
+    margin-bottom: 40px;
+    font-family: Poppins;
+    font-weight: 500;
+    font-style: Regular;
+    font-size: 22px;
+
+    line-height: 22px;
+    letter-spacing: 2%;
+    text-align: center;
+    vertical-align: middle;
+
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.cards h4 {
+    font-family: Poppins;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+
+    line-height: 22px;
+    letter-spacing: 1.5%;
+    text-align: center;
+    vertical-align: middle;
+
+}
+
+.cards>div {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.cards>div:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    background-color: #1D4E89;
+}
+
+.cards>div:hover h3,
+.cards>div:hover h4,
+.cards>div:hover span {
+    color: #ffffff;
+}
+
+.cards span.material-symbols-outlined {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #E6F4F1;
+    color: #1D4E89;
+    margin-bottom: 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.cards>div:hover .material-symbols-outlined {
+    background-color: #ffffff;
+
+    color: #1D4E89;
+
+}
+
+.cards h3 {
+
+    margin-bottom: 10px;
+    transition: color 0.3s;
+    color: #1D3557;
+    font-family: Poppins;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 20px;
+
+    line-height: 22px;
+    letter-spacing: 2%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.cards span:not(.material-symbols-outlined) {
+    display: block;
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.5;
+    transition: color 0.3s;
+}
+
+
+
+
+
+.cards span.material-symbols-outlined {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #E6F4F1;
+    color: #1D4E89;
+    margin-bottom: 16px;
+}
+
+.cards h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1D4E89;
+    margin-bottom: 10px;
+}
+
+.cards span:not(.material-symbols-outlined) {
+    display: block;
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.5;
+}
+
+/* <<<----Why Choose ends---->>> */
+
+
+/* <<<----How TC works? starts---->>> */
+
+.tcWorks {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 20px;
+    flex-wrap: wrap;
+
+}
+
+.tcWorks h2 {
+    color: #1D4E89;
+    font-family: Poppins;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 32px;
+
+    line-height: 22px;
+    letter-spacing: 2%;
+    text-align: center;
+    vertical-align: middle;
+
+}
+
+.tcWorksH3 {
+    color: #4A4A4A;
+    font-family: Poppins;
+    margin-bottom: 40px;
+    font-weight: 500;
+    font-style: Regular;
+    font-size: 22px;
+
+    line-height: 22px;
+    letter-spacing: 2%;
+    text-align: center;
+    vertical-align: middle;
+
+}
+
+.tcwork-card {
+    display: flex;
+    flex-direction: row;
+}
+
+.tcwork-card h3 {
+    color: #1D3557;
+    margin-bottom: 10px;
+    font-family: Poppins;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 20px;
+
+    line-height: 22px;
+    letter-spacing: 2%;
+    text-align: center;
+    vertical-align: middle;
+
+}
+
+.tcwork-card h4 {
+    color: #4A4A4A;
+    font-family: Poppins;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+
+    line-height: 22px;
+    letter-spacing: 1.5%;
+    text-align: center;
+    vertical-align: middle;
+
+}
+
+.tcWorks .signUp,
+.tcWorks .findTutor,
+.tcWorks .startLearning {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 16px auto;
+    max-width: 280px;
+    text-align: center;
+
+
+}
+
+
+.tcWorks .material-symbols-outlined {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #E6F4F1;
+    /* soft icon bg */
+    color: #1D4E89;
+    /* brand color */
+    margin-bottom: 16px;
+}
+
+
+
+.tcWorks span:not(.material-symbols-outlined) {
+    display: block;
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.5;
+}
+
+/* <<<----How TC works? ends---->>> */
+
+/* <<<----Meet Tutors starts---->>> */
+.meetTutors {
+    margin-bottom: 40px;
+}
+
+.meetTutorsH2 {
+    color: #1D4E89;
+    font-family: Poppins;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 32px;
+    margin-bottom: 10px;
+    line-height: 22px;
+    letter-spacing: 2%;
+    text-align: center;
+    vertical-align: middle;
+
+}
+
+.meetTutorsH3 {
+    color: #4A4A4A;
+    margin-bottom: 60px;
+    font-family: Poppins;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 22px;
+
+    line-height: 22px;
+    letter-spacing: 2%;
+    text-align: center;
+    vertical-align: middle;
+
+}
+
+
+.tutor-card {
+    width: 100%;
+    max-width: 320px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.tutor-card:hover {
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+
+.avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 12px;
+    /* center horizontally */
+    border-radius: 50%;
+    background: #f3f0ff;
+    /* light violet background */
+}
+
+/* Icon inside avatar */
+.avatar .material-symbols-outlined {
+    font-size: 50px;
+    color: #4F378A;
+    /* violet shade */
+}
+
+
+.tutor-name {
+
+    color: #2d2d2d;
+    margin: 8px 0;
+    font-family: Poppins;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 20px;
+
+    line-height: 22px;
+    letter-spacing: 2%;
+    text-align: center;
+    vertical-align: middle;
+
+}
+
+
+.subject {
+    font-family: Poppins;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+
+    line-height: 22px;
+    letter-spacing: 1.5%;
+    text-align: center;
+    vertical-align: middle;
+
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.subject span {
+    color: #2196f3;
+
+    font-weight: 500;
+}
+
+
+.experience {
+
+    color: #666;
+
+    margin-bottom: 12px;
+    font-family: Poppins;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+
+    line-height: 18px;
+    letter-spacing: 2%;
+    text-align: center;
+    vertical-align: middle;
+
+}
+
+
+.rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+    color: #444;
+}
+
+.rating .star {
+    color: #fbc02d;
+
+    font-size: 18px;
+    margin-right: 4px;
+}
+
+.reviews {
+    font-size: 0.85rem;
+    color: #888;
+    margin-left: 4px;
+}
+
+
+.profile-btn {
+    background: #2196f3;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    width: 100%;
+}
+
+.profile-btn:hover {
+    background: #1976d2;
+}
+
+
+/* <<<----Meet Tutors ends---->>> */
+
+/* <<<----reviews starts---->>> */
+.studentReviews {
+    text-align: center;
+    padding: 50px 20px;
+    background: #f9f9f9;
+    margin-bottom: 40px;
+}
+
+.studentReviewsH2 {
+    font-family: Poppins;
+    color: #1D4E89;
+font-weight: 600;
+font-style: SemiBold;
+font-size: 32px;
+
+line-height: 22px;
+letter-spacing: 2%;
+text-align: center;
+vertical-align: middle;
+
+    margin-bottom: 10px;
+    
+}
+
+.studentReviewsH3 {
+    
+    color: #6B7280;
+    margin-bottom: 40px;
+    font-family: Poppins;
+font-weight: 400;
+font-style: Regular;
+font-size: 18px;
+
+line-height: 22px;
+letter-spacing: 2%;
+text-align: center;
+vertical-align: middle;
+
+}
+
+.reviews-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+
+}
+
+.reviewCard {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.reviewCard:hover {
+    transform: translateY(-5px);
+}
+
+.review-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #f0ebff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px;
+}
+
+.review-avatar span {
+    font-size: 40px;
+    color: #6b4ce6;
+}
+
+.reviewer-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 12px;
+}
+
+.review-content {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.review-rating {
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+}
+
+.review-rating .star {
+    font-size: 20px;
+    color: #ffc107;
+    /* Gold stars */
+}
+
+/* <<<----reviews ends---->>> */
+
+.signUp {
+    text-align: center;
+    padding: 60px 20px;
+    background: #fff;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.cardStart {
+    max-width: 300px;
+}
+
+.startlearning {
+    font-family: Poppins;
+    color: #1D4E89;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 32px;
+    display: inline-block;
+    line-height: 34px;
+    letter-spacing: 2%;
+    text-align: center;
+    vertical-align: middle;
+    margin-bottom: 12px;
+
+}
+
+.startlearning span {
+    display: inline;
+    /* typewriter span inline */
+    white-space: normal;
+    vertical-align: baseline;
+}
+
+.subtext {
+
+    color: #6B7280;
+    margin-bottom: 24px;
+    font-family: Poppins;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 18px;
+
+    line-height: 22px;
+    letter-spacing: 2%;
+    text-align: center;
+    vertical-align: middle;
+
+}
+
+.signup-btn {
+    background-color: #2563EB;
+    color: #fff;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 500;
+    Line-height: 22px;
+    letter-spacing: 2%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.signup-btn:hover {
+    background-color: #1D4E89;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #1D4E89;
+    color: #fff;
+    padding: 50px 80px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer-left {
+    max-width: 300px;
+}
+
+.footer-left .logo {
+
+    margin-bottom: 12px;
+    color: #ffffff;
+    font-family: Poppins;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 36px;
+
+    line-height: 43px;
+    letter-spacing: 2%;
+    vertical-align: middle;
+
+}
+
+.footer-left p {
+    color: white;
+    font-family: Poppins;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+
+    line-height: 15px;
+    letter-spacing: 2%;
+    vertical-align: middle;
+
+}
+
+.footer-center {
+    display: flex;
+    gap: 60px;
+}
+
+.footer-section h3 {
+
+    margin-bottom: 12px;
+    color: #fff;
+    font-family: Poppins;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 18px;
+    /* leading-trim: NONE; */
+    line-height: 43px;
+    letter-spacing: 2%;
+    vertical-align: middle;
+
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: #d1d5db;
+
+    transition: color 0.3s;
+    font-family: Poppins;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 18px;
+
+    line-height: 43px;
+    letter-spacing: 2%;
+    vertical-align: middle;
+
+}
+
+.footer-section ul li a:hover {
+    color: #fff;
+}
+
+.footer-right {
+    max-width: 250px;
+}
+
+.footer-right h3 {
+
+    margin-bottom: 12px;
+    color: #fff;
+    font-family: Poppins;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 18px;
+
+    line-height: 43px;
+    letter-spacing: 2%;
+    vertical-align: middle;
+
+}
+
+.social-icons {
+    margin-bottom: 16px;
+}
+
+.social-icons a {
+    color: black;
+    font-size: 24px;
+    margin-right: 12px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: white;
+    /* lighter blue on hover */
+}
+
+.newsletter {
+    display: flex;
+    gap: 8px;
+    text-align: center;
+}
+
+.newsletter input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+
+    font-family: Poppins;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 14px;
+
+    line-height: 28px;
+    letter-spacing: 2%;
+    vertical-align: middle;
+
+}
+
+.newsletter button {
+    background-color: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.newsletter button:hover {
+    background-color: #1e40af;
+}
+
+.end-footer {
+    background-color: #16222E;
+    /* slightly darker than main footer */
+    text-align: center;
+    /* padding: 15px 20px; */
+    font-size: 14px;
+    color: #d1d5db;
+    font-family: 'Poppins', sans-serif;
+    border-top: 1px solid #2f4fa6;
+    /* subtle divider */
+}
+
+.end-footer p {
+    margin: 0;
+    font-family: Poppins;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 14px;
+
+    line-height: 43px;
+    letter-spacing: 2%;
+    vertical-align: middle;
+
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .footer-center {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .newsletter {
+        flex-direction: column;
+    }
+
+    .newsletter input {
+        width: 100%;
+    }
+
+    .newsletter button {
+        width: 100%;
+    }
+}
+
+
+/* Tablets & small desktops (already done by you at 1024px) */
+@media (max-width: 1024px) {
+    .getStarted {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .left {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .btns {
+        justify-content: center;
+    }
+
+    .right {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.tutor-card {
+    width: 90%;
+
+    margin: 0 auto;
+}
+
+
+
+/* Mobiles (under 768px) */
+@media (max-width: 768px) {
+    .left h2 {
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    .left h3 {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .btns button {
+        width: 100%;
+        /* buttons full-width */
+        max-width: 300px;
+    }
+
+    .whyChoose h2 {
+        font-size: 24px;
+        line-height: 32px;
+        text-align: center;
+    }
+
+    .whyChoose h3 {
+        font-size: 16px;
+        line-height: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+        /* stack cards */
+        gap: 16px;
+    }
+
+    .tcWorks {
+        padding: 20px;
+    }
+
+    .tcWorks h2 {
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    .tcwork-card {
+        flex-direction: column;
+    }
+
+    .tcWorks h3,
+    .tcWorks .tcWorksH3 {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .tcWorks .signUp,
+    .tcWorks .findTutor,
+    .tcWorks .startLearning {
+        width: 100%;
+        max-width: 100%;
+        margin: 12px 0;
+    }
+
+    .tutor-card {
+        width: 100%;
+        padding: 16px;
+    }
+
+    .avatar {
+        width: 60px;
+        height: 60px;
+    }
+
+    .avatar .material-symbols-outlined {
+        font-size: 40px;
+    }
+
+    .tutor-card {
+        max-width: 280px;
+        padding: 16px;
+    }
+
+    .tutor-name {
+        font-size: 1.1rem;
+    }
+
+    .subject {
+        font-size: 0.9rem;
+    }
+
+    .experience {
+        font-size: 0.85rem;
+    }
+
+
+
+}
+
+/* Very small phones (under 480px) */
+@media (max-width: 480px) {
+    .left h2 {
+        font-size: 20px;
+        line-height: 28px;
+    }
+
+    .left h3 {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .btns {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .btns button {
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+
+    .cards h3 {
+        font-size: 18px;
+    }
+
+    .cards h4,
+    .cards span:not(.material-symbols-outlined) {
+        font-size: 14px;
+    }
+
+    .tcWorks h2 {
+        font-size: 20px;
+    }
+
+    .tcWorks h3 {
+        font-size: 14px;
+    }
+
+
+    .tutor-card {
+        max-width: 100%;
+        /* margin: 0 auto 16px; */
+        padding: 14px;
+        text-align: center;
+    }
+
+    .avatar {
+        font-size: 50px;
+    }
+
+    .tutor-name {
+        font-size: 1rem;
+    }
+
+    .profile-btn {
+        font-size: 0.9rem;
+        padding: 8px 14px;
+    }
+}

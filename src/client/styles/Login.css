@@ -1,0 +1,54 @@
+.loginPage {
+    max-width: 400px;
+    margin: 50px auto;
+    text-align: center;
+    padding: 30px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Poppins;
+  }
+  
+  .loginHeading {
+    color: #1d4e89;
+    font-weight: 600;
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  
+  .loginSubtext {
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 25px;
+  }
+  
+  .loginForm input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+  
+  .loginBtn {
+    width: 100%;
+    padding: 12px;
+    background-color: #1d4e89;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .loginBtn:hover {
+    background-color: #005bb5;
+  }
+  
+  .message {
+    margin-top: 15px;
+    font-size: 14px;
+    color: red;
+  }
+  

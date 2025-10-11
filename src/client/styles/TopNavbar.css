@@ -1,0 +1,40 @@
+.topNavbar {
+    height: 60px;
+    background-color: #1d4e89;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  
+  .navLeft {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .menuBtn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .navTitle {
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 20px;
+  }
+  
+  .navAvatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
