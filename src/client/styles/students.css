@@ -1,0 +1,213 @@
+.studentsPage {
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+    background: #f8f9fd;
+    min-height: 100vh;
+  }
+  
+  .studentsMain {
+    flex: 2;
+  }
+  
+  .studentsMain h2 {
+    font-size: 24px;
+    color: #1e1e1e;
+  }
+  
+  .studentsMain h2 span {
+    color: #2a73ff;
+  }
+  
+  .studentsSubtext {
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .summaryCards {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    flex: 1;
+    text-align: center;
+  }
+  
+  .card p {
+    font-size: 22px;
+    color: #2a73ff;
+    margin: 5px 0;
+  }
+  
+  .card span {
+    font-size: 12px;
+    color: #888;
+  }
+  
+  .searchBar {
+    background: #fff;
+    border-radius: 25px;
+    padding: 10px 20px;
+    margin-bottom: 15px;
+  }
+  
+  .searchBar input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 15px;
+  }
+  
+  .studentsTable {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .studentsTable th {
+    background: #f1f1f1;
+    padding: 12px;
+    color: #444;
+    text-align: left;
+  }
+  
+  .studentsTable td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+  }
+  
+  .emailCell {
+    color: #2a73ff;
+    text-decoration: underline;
+  }
+  
+  .manageBtn {
+    background: none;
+    color: #2a73ff;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  .seeAll {
+    color: #2a73ff;
+    margin-top: 10px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  /* Right panel */
+  .studentDetail {
+    flex: 1;
+    background: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: relative;
+  }
+  
+  .closeBtn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border: none;
+    background: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .profileSection {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .studentAvatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+  }
+  
+  .classInfo {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .circleChart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 6px solid #2a73ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2a73ff;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .notesSection {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .notesSection textarea {
+    width: 100%;
+    height: 70px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    resize: none;
+    font-size: 14px;
+  }
+  
+  .addNoteBtn {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background: #2a73ff;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+  }
+  
+  .manageActions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .viewBtn {
+    background: #2a73ff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+  
+  .removeBtn {
+    background: #ff4d4f;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+  

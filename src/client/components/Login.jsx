@@ -39,7 +39,7 @@ export default function Login() {
         // Redirect based on role
         setTimeout(() => {
           if (data.user.role === "tutor" || data.user.role === "teacher") {
-            navigate("/dashboard");
+            navigate("/tutor/Dashboard");
           } else {
             navigate("/profile");
           }

@@ -5,6 +5,8 @@ import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
+import pricingRoutes from "./routes/pricingRoutes.js";
+import profileRoutes from "./routes/profileRoutes.js";
 
 dotenv.config();
 
@@ -27,6 +29,9 @@ app.use(
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/tutor/pricing", pricingRoutes);
+app.use("/api/profile", profileRoutes);
+
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`✅ Server running on http://localhost:${PORT}`));

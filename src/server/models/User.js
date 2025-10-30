@@ -10,9 +10,16 @@ const userSchema = new mongoose.Schema(
     role: { type: String, enum: ["student", "tutor"], required: true },
     subjects: { type: [String], default: [] },
     experience: { type: Number, default: 0 },
-  },
-  { timestamps: true }
-);
+    phone: String,
+    gender: { type: String, default: "male" },
+    bio: String,
+    avatar: { type: String, default: "/uploads/avatars/default.png" },
+    idProof: String,
+    certificate: String,
+    rateType: { type: String, enum: ["monthly", "weekly"], default: "monthly" },
+    rate: Number,
+  }, { timestamps: true });
+
 
 // Hash password before saving
 userSchema.pre("save", async function (next) {

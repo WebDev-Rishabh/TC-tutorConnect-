@@ -56,7 +56,7 @@ export default function SignUp() {
 
   // ======= TUTOR SUBMIT =======
   const handleTutorSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault();   
     setMessage("");
 
     if (formData.password !== formData.confirmPassword)
@@ -78,6 +78,8 @@ export default function SignUp() {
 
       const data = await response.json();
       if (response.ok) {
+        localStorage.setItem("token", data.token);
+    localStorage.setItem("role", data.body.role);
         setMessage("🎉 Tutor Registered Successfully!");
         setTimeout(() => navigate("/profile"), 1500);
       } else {

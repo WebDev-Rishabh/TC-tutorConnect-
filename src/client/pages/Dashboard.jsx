@@ -1,54 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import Sidebar from "../components/Sidebar"; // ✅ use your existing sidebar
 import "../styles/Dashboard.css";
-import {
-  FaHome,
-  FaBookOpen,
-  FaTags,
-  FaUserGraduate,
-  FaRupeeSign,
-  FaCog,
-} from "react-icons/fa";
+
 
 export default function Dashboard() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [activePage, setActivePage] = useState("Dashboard");
+
   return (
     <div className="dashboardContainer">
-      {/* ===== Sidebar ===== */}
-      <aside className="sidebar">
-        <h2 className="logo">TutorConnect</h2>
-        <ul className="menu">
-          <li className="active">
-            <FaHome /> Dashboard
-          </li>
-          <li>
-            <FaBookOpen /> My Subjects
-          </li>
-          <li>
-            <FaTags /> Pricing
-          </li>
-          <li>
-            <FaUserGraduate /> Students
-          </li>
-          <li>
-            <FaRupeeSign /> Earnings
-          </li>
-          <li>
-            <FaCog /> Settings
-          </li>
-        </ul>
-      </aside>
+      {/* Sidebar */}
+      
 
-      {/* ===== Main Content ===== */}
-      <main className="mainContent">
-        {/* Top bar */}
-        <div className="topBar">
-          <h3>Dashboard</h3>
-          <div className="profileIcon">
-            <img
-              src="https://img.icons8.com/ios-filled/50/1D4E89/user-male-circle.png"
-              alt="profile"
-            />
-          </div>
-        </div>
+      {/* Main Content */}
+      <main className={`mainContent`}>
+        
+        
 
         {/* Welcome Section */}
         <section className="welcomeSection">
@@ -99,15 +66,6 @@ export default function Dashboard() {
                 <td>25 Sep 2025, 12:00 PM</td>
                 <td>Physics</td>
                 <td>Active</td>
-                <td>
-                  <button className="joinBtn">Join</button>
-                  <button className="cancelBtn">Cancel</button>
-                </td>
-              </tr>
-              <tr>
-                <td>N/A</td>
-                <td>N/A</td>
-                <td>N/A</td>
                 <td>
                   <button className="joinBtn">Join</button>
                   <button className="cancelBtn">Cancel</button>
