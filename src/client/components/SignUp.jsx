@@ -1,4 +1,3 @@
-// src/pages/SignUp.jsx
 import React, { useState } from "react";
 import "../styles/SignUp.css";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +11,9 @@ export default function SignUp() {
     confirmPassword: "",
     subjects: "",
     experience: "",
+    avatar: null,
   });
+  const [preview, setPreview] = useState(null);
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
@@ -20,73 +21,81 @@ export default function SignUp() {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  // ======= STUDENT SUBMIT =======
+  // ✅ Avatar Upload + Preview
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setFormData((prev) => ({ ...prev, avatar: file }));
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => setPreview(reader.result);
+      reader.readAsDataURL(file);
+    } else {
+      setPreview(null);
+    }
+  };
+
   const handleStudentSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
-
     if (formData.password !== formData.confirmPassword)
       return setMessage("Passwords do not match.");
 
-    try {
-      const response = await fetch("http://localhost:5000/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fullName: formData.fullName,
-          email: formData.email,
-          password: formData.password,
-          role: "student",
-          subjects: [formData.subjects],
-        }),
-      });
+    const formDataToSend = new FormData();
+    formDataToSend.append("fullName", formData.fullName);
+    formDataToSend.append("email", formData.email);
+    formDataToSend.append("password", formData.password);
+    formDataToSend.append("role", "student");
+    formDataToSend.append("subjects", formData.subjects);
+    if (formData.avatar) formDataToSend.append("avatar", formData.avatar);
 
-      const data = await response.json();
-      if (response.ok) {
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/register", {
+        method: "POST",
+        body: formDataToSend,
+      });
+      const data = await res.json();
+      if (res.ok) {
         setMessage("🎉 Student Registered Successfully!");
         setTimeout(() => navigate("/profile"), 1500);
-      } else {
-        setMessage(data.message || "Registration failed.");
-      }
-    } catch (error) {
-      console.error("Error:", error);
+      } else setMessage(data.message || "Registration failed.");
+    } catch (err) {
+      console.error(err);
       setMessage("Server error, please try again later.");
     }
   };
 
-  // ======= TUTOR SUBMIT =======
   const handleTutorSubmit = async (e) => {
-    e.preventDefault();   
+    e.preventDefault();
     setMessage("");
-
     if (formData.password !== formData.confirmPassword)
       return setMessage("Passwords do not match.");
 
-    try {
-      const response = await fetch("http://localhost:5000/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fullName: formData.fullName,
-          email: formData.email,
-          password: formData.password,
-          role: "tutor",
-          subjects: [formData.subjects],
-          experience: Number(formData.experience),
-        }),
-      });
+    const token = localStorage.getItem("token");
+    const formDataToSend = new FormData();
+    formDataToSend.append("fullName", formData.fullName);
+    formDataToSend.append("email", formData.email);
+    formDataToSend.append("password", formData.password);
+    formDataToSend.append("role", "tutor");
+    formDataToSend.append("experience", Number(formData.experience));
+    if (formData.avatar) formDataToSend.append("avatar", formData.avatar);
 
-      const data = await response.json();
-      if (response.ok) {
-        localStorage.setItem("token", data.token);
-    localStorage.setItem("role", data.body.role);
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/register", {
+        method: "POST",
+        headers: {
+          Authorization: token?.startsWith("Bearer") ? token : `Bearer ${token}`,
+        },
+        body: formDataToSend,
+      });
+      const data = await res.json();
+      if (res.ok) {
+        localStorage.setItem("authorization", data.token);
+        localStorage.setItem("role", data.role);
         setMessage("🎉 Tutor Registered Successfully!");
-        setTimeout(() => navigate("/profile"), 1500);
-      } else {
-        setMessage(data.message || "Registration failed.");
-      }
-    } catch (error) {
-      console.error("Error:", error);
+        setTimeout(() => navigate("/tutor/profile"), 1500);
+      } else setMessage(data.message || "Registration failed.");
+    } catch (err) {
+      console.error(err);
       setMessage("Server error, please try again later.");
     }
   };
@@ -100,16 +109,18 @@ export default function SignUp() {
       confirmPassword: "",
       subjects: "",
       experience: "",
+      avatar: null,
     });
+    setPreview(null);
     setMessage("");
   };
 
-  // ======= UI =======
   return (
     <div className="signUpPage">
+
       {selectedForm === "" && (
         <>
-          <h2 className="signUpHeading">How would you like to join </h2>
+          <h2 className="signUpHeading">How would you like to join</h2>
           <h2 className="signUpHeading">TutorConnect?</h2>
 
           <div className="cardContainer">
@@ -125,7 +136,10 @@ export default function SignUp() {
               </span>
               <h3>I want to Learn</h3>
               <p>Find trusted tutors for your learning journey.</p>
-              <button onClick={() => setSelectedForm("student")} className="cardBtn">
+              <button
+                onClick={() => setSelectedForm("student")}
+                className="cardBtn"
+              >
                 Signup as Student
               </button>
             </div>
@@ -142,7 +156,10 @@ export default function SignUp() {
               </span>
               <h3>I want to Teach</h3>
               <p>Share knowledge, inspire students, and earn money.</p>
-              <button onClick={() => setSelectedForm("tutor")} className="cardBtn">
+              <button
+                onClick={() => setSelectedForm("tutor")}
+                className="cardBtn"
+              >
                 Signup as Tutor
               </button>
             </div>
@@ -154,11 +171,32 @@ export default function SignUp() {
       {selectedForm === "student" && (
         <div className="formContainer">
           <h2 className="formHeading">Create Your Student Account</h2>
-          <p className="formSubtext">
-            Find verified tutors and start your learning journey today.
-          </p>
 
-          <form className="signUpForm" onSubmit={handleStudentSubmit}>
+          <form
+            className="signUpForm"
+            onSubmit={handleStudentSubmit}
+            encType="multipart/form-data"
+          >
+            {/* ✅ Avatar circle */}
+            <label htmlFor="avatarUpload" className="avatarUpload">
+              <img
+                src={
+                  preview ||
+                  "https://img.icons8.com/ios-filled/100/cccccc/user-male-circle.png"
+                }
+                alt="avatar"
+                className="avatarPreview"
+              />
+            </label>
+            <input
+              type="file"
+              id="avatarUpload"
+              name="avatar"
+              accept="image/*"
+              onChange={handleFileChange}
+              hidden
+            />
+
             <input
               type="text"
               name="fullName"
@@ -191,6 +229,7 @@ export default function SignUp() {
               onChange={handleChange}
               required
             />
+
             <select
               name="subjects"
               value={formData.subjects}
@@ -209,7 +248,6 @@ export default function SignUp() {
           </form>
 
           {message && <p className="message">{message}</p>}
-
           <button className="backBtn" onClick={handleBack}>
             ← Back
           </button>
@@ -220,11 +258,32 @@ export default function SignUp() {
       {selectedForm === "tutor" && (
         <div className="formContainer">
           <h2 className="formHeading">Create Your Tutor Account</h2>
-          <p className="formSubtext">
-            Connect with students and share your expertise globally.
-          </p>
 
-          <form className="signUpForm" onSubmit={handleTutorSubmit}>
+          <form
+            className="signUpForm"
+            onSubmit={handleTutorSubmit}
+            encType="multipart/form-data"
+          >
+            {/* ✅ Avatar circle */}
+            <label htmlFor="avatarUploadTutor" className="avatarUpload">
+              <img
+                src={
+                  preview ||
+                  "https://img.icons8.com/ios-filled/100/cccccc/user-male-circle.png"
+                }
+                alt="avatar"
+                className="avatarPreview"
+              />
+            </label>
+            <input
+              type="file"
+              id="avatarUploadTutor"
+              name="avatar"
+              accept="image/*"
+              onChange={handleFileChange}
+              hidden
+            />
+
             <input
               type="text"
               name="fullName"
@@ -258,14 +317,6 @@ export default function SignUp() {
               required
             />
             <input
-              type="text"
-              name="subjects"
-              placeholder="Subjects You Teach"
-              value={formData.subjects}
-              onChange={handleChange}
-              required
-            />
-            <input
               type="number"
               name="experience"
               placeholder="Years of Experience"
@@ -280,7 +331,6 @@ export default function SignUp() {
           </form>
 
           {message && <p className="message">{message}</p>}
-
           <button className="backBtn" onClick={handleBack}>
             ← Back
           </button>

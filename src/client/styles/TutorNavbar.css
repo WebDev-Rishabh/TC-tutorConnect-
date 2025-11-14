@@ -1,77 +1,76 @@
 .tutor-navbar {
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 20px;
-    border-bottom: 1px solid #ddd;
-    position: relative;
-    z-index: 10;
-  }
-  
-  .hamburger {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #333;
-  }
-  
-  .tutor-navbar-title {
-    font-size: 20px;
-    font-weight: 600;
-    color: #333;
-  }
-  
-  .tutor-navbar-right {
-    position: relative;
-  }
-  
-  .tutor-avatar {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    object-fit: cover;
-    cursor: pointer;
-    border: 2px solid #ddd;
-    transition: border-color 0.3s ease;
-  }
-  
-  .tutor-avatar:hover {
-    border-color: #007bff;
-  }
-  
-  .avatar-dropdown {
-    position: absolute;
-    top: 55px;
-    right: 0;
-    background: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-    min-width: 140px;
-    display: flex;
-    flex-direction: column;
-    animation: fadeIn 0.2s ease-in-out;
-  }
-  
-  .dropdown-btn {
-    padding: 10px 15px;
-    text-align: left;
-    border: none;
-    background: #fff;
-    font-size: 15px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .dropdown-btn:hover {
-    background: #f2f2f2;
-  }
-  
-  .logout-btn {
-    color: #d9534f;
-    font-weight: 500;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 0.75rem 1rem;
+}
+
+.hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.tutor-navbar-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: #333;
+}
+
+.tutor-navbar-right {
+  position: relative;
+  cursor: pointer;
+}
+
+.tutor-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+  transition: all 0.2s ease-in-out;
+}
+
+.tutor-avatar:hover {
+  border-color: #007bff;
+}
+
+.avatar-dropdown {
+  position: absolute;
+  right: 0;
+  top: 55px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
+  z-index: 100;
+}
+
+.dropdown-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: #333;
+  border-radius: 4px;
+}
+
+.dropdown-btn:hover {
+  background: #f3f3f3;
+}
+
+.logout-btn {
+  color: #d9534f;
+  font-weight: 500;
+}
+
   
   @keyframes fadeIn {
     from {

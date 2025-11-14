@@ -6,7 +6,7 @@ import {
   updatePricing,
   deletePricing,
 } from "../controllers/pricingController.js";
-import { verifyToken, verifyTutor } from "../middleware/authMiddleware.js";
+import { verifyToken, verifyTutor } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 

@@ -61,7 +61,7 @@
   padding: 30px 50px;
   overflow-y: auto;
   transition: margin-left 0.3s ease;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   padding: 20px;
   font-family: Poppins, sans-serif;
 }

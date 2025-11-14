@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   LayoutDashboard,
   BookOpen,
@@ -8,24 +8,30 @@ import {
   Wallet,
   Settings,
 } from "lucide-react";
+
 import "../styles/Sidebar.css";
 
 export default function Sidebar({ isOpen, setActivePage }) {
-  
+  const location = useLocation();
+
   const menuItems = [
-    { name: "Dashboard", icon: <LayoutDashboard size={20} />, path: "/tutor/dashboard" },
-    { name: "My Subjects", icon: <BookOpen size={20} />, path: "/tutor/subjects" },
-    { name: "Pricing", icon: <DollarSign size={20} />, path: "/tutor/pricing" },
-    { name: "Students", icon: <Users size={20} />, path: "/tutor/students" },
-    { name: "Earnings", icon: <Wallet size={20} />, path: "/tutor/earnings" },
-    { name: "Settings", icon: <Settings size={20} />, path: "/tutor/settings" },
+    { name: "Dashboard", icon: <LayoutDashboard size={20} />, path: "dashboard" },
+    { name: "My Subjects", icon: <BookOpen size={20} />, path: "subjects" },
+    { name: "Pricing", icon: <DollarSign size={20} />, path: "pricing" },
+    { name: "Students", icon: <Users size={20} />, path: "students" },
+    { name: "Earnings", icon: <Wallet size={20} />, path: "earnings" },
+    { name: "Settings", icon: <Settings size={20} />, path: "settings" },
   ];
 
   return (
     <aside className={`sidebar ${isOpen ? "open" : ""}`}>
       <ul>
         {menuItems.map((item) => (
-          <li key={item.name} onClick={() => setActivePage(item.name)}>
+          <li
+            key={item.name}
+            className={location.pathname.includes(item.path) ? "active" : ""}
+            onClick={() => setActivePage(item.name)}
+          >
             <Link to={item.path} className="sidebar-link">
               {item.icon}
               <span>{item.name}</span>

@@ -14,44 +14,44 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage("");
-
+  
     if (!formData.email || !formData.password) {
       return setMessage("Please enter both email and password.");
     }
-
+  
     try {
       const response = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-
+  
       const data = await response.json();
-
-      if (response.ok) {
-        // Save JWT token and user role
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("role", data.user.role);
-
-        setMessage("✅ Login successful!");
-
-        // Redirect based on role
-        setTimeout(() => {
-          if (data.user.role === "tutor" || data.user.role === "teacher") {
-            navigate("/tutor/Dashboard");
-          } else {
-            navigate("/profile");
-          }
-        }, 1000);
-      } else {
-        setMessage(data.message || "Login failed. Check credentials.");
+      if (!response.ok) {
+        throw new Error(data.message || "Login failed");
       }
-    } catch (error) {
-      console.error("Login error:", error);
-      setMessage("Server error, try again later.");
+  
+      console.log("✅ Login success:", data);
+      localStorage.setItem("authorization", data.token);
+    localStorage.setItem("role", data.user.role);
+    
+    // localStorage.setItem("userId", data.user.id);
+    // localStorage.setItem("userName", data.user.fullName);
+
+    // ✅ Redirect based on role
+    if (data.user.role === "tutor") {
+      window.location.href = "/tutor/dashboard";
+    } else if (data.user.role === "student") {
+      window.location.href = "/student/dashboard";
+    } else {
+      window.location.href = "/";
+    }
+    } catch (err) {
+      console.error("❌ Login error:", err.message);
+      setMessage(err.message);
     }
   };
+  
 
   return (
     <div className="loginPage">

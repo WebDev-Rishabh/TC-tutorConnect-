@@ -5,7 +5,7 @@ import "../styles/Profile.css";
 
 export default function CompleteProfile() {
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("authorization");
 
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -28,53 +28,67 @@ export default function CompleteProfile() {
   const [certificateFile, setCertificateFile] = useState(null);
   const [certificateName, setCertificateName] = useState("");
 
-  const [subjects, setSubjects] = useState([""]);
-  const [rateType, setRateType] = useState("monthly");
-  const [rate, setRate] = useState("");
+  const [subjects, setSubjects] = useState([
+    { name: "", rate: "", availability: "monthly" },
+  ]);
+
+  const [tutorData, setTutorData] = useState(null);
 
   // Fetch current profile (protected)
   useEffect(() => {
     const fetchProfile = async () => {
+     
       if (!token) return; // not logged in
       setLoading(true);
       try {
         const res = await axios.get("http://localhost:5000/api/profile/me", {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authorization")}`,
+          },
         });
-
-        const user = res.data;
-        // Prefill basic fields
+  
+        console.log("Fetched profile:", res.data);
+  
+        const user = res.data.user;
+        const tutor = res.data.tutor;
+        setTutorData(tutor);
+  
+        if (!user) return;
+  
+        // Prefill basic user fields
         setFormData((prev) => ({
           ...prev,
           fullName: user.fullName || "",
           email: user.email || "",
           phone: user.phone || "",
           gender: user.gender || "male",
-          bio: user.bio || "",
+          bio: tutor?.bio || "",
         }));
-
+  
         if (user.avatar) {
-          // backend should expose avatar path like /uploads/avatars/xxx.jpg
-          setAvatarPreview(`http://localhost:5000${user.avatar}`);
+          const avatarPath = user.avatar.startsWith("http")
+            ? user.avatar
+            : `http://localhost:5000${user.avatar}`;
+          setAvatarPreview(avatarPath);
         }
+        console.log("Avatar preview set to:", avatarPreview);
 
-        if (user.idProof) setIdProofName(user.idProof.split("/").pop());
-        if (user.certificate) setCertificateName(user.certificate.split("/").pop());
-
-        setSubjects(user.subjects && user.subjects.length ? user.subjects : [""]);
-        setRateType(user.rateType || "monthly");
-        setRate(user.rate || "");
+        if (tutor?.idProof) setIdProofName(tutor.idProof.split("/").pop());
+        if (tutor?.certificate)
+          setCertificateName(tutor.certificate.split("/").pop());
+  
+        setSubjects(tutor?.subjects?.length ? tutor.subjects : [""]);
+        
       } catch (err) {
         console.error("Fetch profile error:", err);
-        // no fatal — user may be new
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchProfile();
   }, [token]);
-
+  
   // Generic text / radio change
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -103,14 +117,14 @@ export default function CompleteProfile() {
     setCertificateName(file.name);
   };
 
-  // Subjects array helpers
-  const handleSubjectChange = (index, value) => {
-    const copy = [...subjects];
-    copy[index] = value;
-    setSubjects(copy);
-  };
-  const addSubject = () => setSubjects((s) => [...s, ""]);
-  const removeSubject = (index) => setSubjects((s) => s.filter((_, i) => i !== index));
+  
+  
+  
+  const addSubject = () =>
+    setSubjects((prev) => [...prev, { name: "", rate: "", availability: "monthly" }]);
+  
+  const removeSubject = (index) =>
+    setSubjects((prev) => prev.filter((_, i) => i !== index));
 
   // Navigation
   const nextStep = () => setStep((s) => Math.min(3, s + 1));
@@ -120,36 +134,57 @@ export default function CompleteProfile() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("authorization");
       const role = localStorage.getItem("role");
-  
+      const subjectData = subjects.map((s) => ({
+        _id: s._id || undefined,  // allow existing or new
+        name: s.name,
+        rate: s.rate,
+        availability: s.availability,
+      }));
       if (!token) {
         alert("You are not logged in!");
         return;
       }
   
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
+      // ✅ Create real FormData
+      const data = new FormData();
   
+      // Basic user info
+      data.append("fullName", formData.fullName || "");
+      data.append("phone", formData.phone || "");
+      data.append("bio", formData.bio || "");
+      data.append("qualification", formData.qualification || "");
+      data.append("experience", formData.experience || "");
+      data.append("hourlyRate", formData.hourlyRate || "");
+  
+      data.append("subjects", JSON.stringify(subjectData));
+      // Files (only append if selected)
+      if (avatarFile) data.append("avatar", avatarFile);
+      if (idProofFile) data.append("idProof", idProofFile);
+      if (certificateFile) data.append("certificate", certificateFile);
+  
+      // ✅ Send multipart/form-data
       const res = await axios.put(
-        "http://localhost:5000/api/profile/update",
-        formData,
-        config
+        "http://localhost:5000/api/profile/profile/update",
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
   
       console.log("Profile updated:", res.data);
       alert("Profile updated successfully!");
   
-      // ✅ Redirect after success
+      // Redirect
       if (role === "tutor") {
         window.location.href = "/tutor/dashboard";
       } else {
         window.location.href = "/";
       }
-  
     } catch (err) {
       console.error("Profile save error:", err);
       alert("Error updating profile.");
@@ -187,14 +222,19 @@ export default function CompleteProfile() {
       {step === 1 && (
         <div className="profileCard">
           <div className="avatarSection">
-            <div className="avatarPreviewWrap">
-              <img src={avatarPreview} alt="avatar" className="avatarPreviewImg" />
-            </div>
-            <label className="uploadAvatarBtn">
-              Upload Avatar
-              <input type="file" accept="image/*" onChange={handleAvatarChange} hidden />
-            </label>
-          </div>
+  <div className="avatarPreviewWrap">
+    <img
+      src={avatarPreview || "/default-avatar.png"}
+      alt="Avatar Preview"
+      className="avatar-preview"
+    />
+  </div>
+
+  <label className="uploadAvatarBtn">
+    Upload Avatar
+    <input type="file" accept="image/*" onChange={handleAvatarChange} hidden />
+  </label>
+</div>
 
           <label>Full Name</label>
           <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} placeholder="Enter full name" />
@@ -227,70 +267,159 @@ export default function CompleteProfile() {
 
       {/* STEP 2 */}
       {step === 2 && (
-        <div className="verificationStep">
-          <div className="docCard">
-            <h3>Government ID Proof</h3>
-            <p>(Aadhar, Passport, Driver’s License)</p>
-            <label className="uploadBtn">
-              {idProofName || "Upload Document"}
-              <input type="file" name="idProof" accept=".jpg,.png,.pdf" onChange={handleIdProofChange} hidden />
-            </label>
-            {idProofName && <p className="fileName">{idProofName}</p>}
-          </div>
+  <div className="verificationStep">
+    {/* ID Proof */}
+    <div className="docCard">
+      <h3>Government ID Proof</h3>
+      <p>(Aadhar, Passport, Driver’s License)</p>
 
-          <div className="docCard">
-            <h3>Educational Certificate</h3>
-            <p>(Degree, Diploma, or Marksheet)</p>
-            <label className="uploadBtn">
-              {certificateName || "Upload Document"}
-              <input type="file" name="certificate" accept=".jpg,.png,.pdf" onChange={handleCertificateChange} hidden />
-            </label>
-            {certificateName && <p className="fileName">{certificateName}</p>}
-          </div>
+      <label className="uploadBtn">
+        {idProofName || "Upload Document"}
+        <input
+          type="file"
+          name="idProof"
+          accept=".jpg,.png,.pdf"
+          onChange={handleIdProofChange}
+          hidden
+        />
+      </label>
 
-          <div className="buttonRow">
-            <button className="secondaryBtn" onClick={prevStep} disabled={loading}>Back</button>
-            <button className="primaryBtn" onClick={nextStep} disabled={loading}>Continue</button>
-          </div>
-        </div>
+      {idProofName && <p className="fileName">{idProofName}</p>}
+
+      {/* ✅ Download existing document if available */}
+      {tutorData?.proofs?.length > 0 && (
+        <a
+          href={`http://localhost:5000/${tutorData.proofs[0]}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="downloadBtn"
+        >
+          Download
+        </a>
       )}
+    </div>
+
+    {/* Educational Certificate */}
+    <div className="docCard">
+      <h3>Educational Certificate</h3>
+      <p>(Degree, Diploma, or Marksheet)</p>
+
+      <label className="uploadBtn">
+        {certificateName || "Upload Document"}
+        <input
+          type="file"
+          name="certificate"
+          accept=".jpg,.png,.pdf"
+          onChange={handleCertificateChange}
+          hidden
+        />
+      </label>
+
+      {certificateName && <p className="fileName">{certificateName}</p>}
+
+      {/* ✅ Download existing certificate if available */}
+      {tutorData?.certificates?.length > 0 && (
+        <a
+          href={`http://localhost:5000/${tutorData.certificates[0]}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="downloadBtn"
+        >
+          Download
+        </a>
+      )}
+    </div>
+
+    {/* Buttons */}
+    <div className="buttonRow">
+      <button className="secondaryBtn" onClick={prevStep} disabled={loading}>
+        Back
+      </button>
+      <button className="primaryBtn" onClick={nextStep} disabled={loading}>
+        Continue
+      </button>
+    </div>
+  </div>
+)}
+
 
       {/* STEP 3 */}
       {step === 3 && (
         <div className="profileCard pricingSection">
-          <label>Subjects</label>
-          {subjects.map((sub, idx) => (
-            <div key={idx} className="subjectRow">
-              <input type="text" value={sub} onChange={(e) => handleSubjectChange(idx, e.target.value)} placeholder={`Subject ${idx + 1}`} />
-              {subjects.length > 1 && <button className="removeSubBtn" onClick={() => removeSubject(idx)}>−</button>}
-            </div>
-          ))}
-          <button className="addMoreBtn" onClick={addSubject}>+ Add More</button>
+  <h3>Add Subjects & Pricing</h3>
 
-          <label>Availability</label>
-          <div className="radioGroup">
-            <label>
-              <input type="radio" name="rateType" value="monthly" checked={rateType === "monthly"} onChange={() => setRateType("monthly")} />
-              Monthly
-            </label>
-            <label>
-              <input type="radio" name="rateType" value="weekly" checked={rateType === "weekly"} onChange={() => setRateType("weekly")} />
-              Weekly
-            </label>
-          </div>
+  {subjects.map((sub, idx) => (
+    <div key={idx} className="subjectRowEnhanced">
+      <div className="inputGroup">
+        <label>Subject</label>
+        <input
+          type="text"
+          placeholder="Enter subject name"
+          value={sub.name || ""}
+          onChange={(e) => {
+            const updated = [...subjects];
+            updated[idx].name = e.target.value;
+            setSubjects(updated);
+          }}
+        />
+      </div>
 
-          <label>Set Your {rateType.charAt(0).toUpperCase() + rateType.slice(1)} Rate</label>
-          <input type="number" value={rate} onChange={(e) => setRate(e.target.value)} placeholder="Enter rate" />
-          <p className="noteText">Competitive rates attract more students</p>
+      <div className="inputGroup">
+        <label>Rate (₹)</label>
+        <input
+          type="number"
+          placeholder="e.g. 1000"
+          value={sub.rate || ""}
+          onChange={(e) => {
+            const updated = [...subjects];
+            updated[idx].rate = e.target.value;
+            setSubjects(updated);
+          }}
+        />
+      </div>
 
-          <div className="buttonRow">
-            <button className="secondaryBtn" onClick={prevStep} disabled={loading}>Back</button>
-            <button className="primaryBtn" onClick={handleSubmit} disabled={loading}>
-              {loading ? "Saving..." : "Save"}
-            </button>
-          </div>
-        </div>
-      )}
+      <div className="inputGroup">
+        <label>Batch Duration</label>
+        <select
+          value={sub.availability || "weekly"}
+          onChange={(e) => {
+            const updated = [...subjects];
+            updated[idx].availability = e.target.value;
+            setSubjects(updated);
+          }}
+        >
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+        </select>
+      </div>
+
+      <button className="removeSubjectBtn" onClick={() => removeSubject(idx)}>
+        Remove
+      </button>
+    </div>
+  ))}
+
+  <button type="button" className="addMoreBtn" onClick={addSubject}>
+    + Add More
+  </button>
+
+  <p className="noteText">
+    You can add multiple subjects with different rates and availability.
+  </p>
+
+  <div className="buttonRow">
+    <button className="secondaryBtn" onClick={prevStep} disabled={loading}>
+      Back
+    </button>
+    <button className="primaryBtn" onClick={handleSubmit} disabled={loading}>
+      {loading ? "Saving..." : "Save"}
+    </button>
+  </div>
+</div>
+
+)}
+
     </div>
   );
 }
